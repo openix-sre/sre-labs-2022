@@ -21,3 +21,5 @@ Los siguientes ejercicios corresponden a prácticas de la unidad Docker del curs
 10. Desplegar una base de datos postgres con la contraseña "postgres_2022" en el puerto 5400 del host y persistir los datos en el volumen creado
 en el ejercicio 9. El servicio debe correr en primer plano. La red del servicio debe ser la creada en el ejercicio 2.
 11. Probar la conexión a la base de datos postgres desde el servicio cloudbeaver.
+12. Crear un archivo Dockerfile.app que permita instalar las dependencias del proyecto Pokeapp y generar la carpeta dist, luego copiar esa carpeta en una imagen de nginx.
+13. Crear una imagen en base al archivo Dockerfile.app creado en el punto anterior con el nombre de su repositorio de Docker Hub y subir su imagen a su repositorio.
