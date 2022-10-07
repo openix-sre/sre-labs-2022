@@ -23,3 +23,18 @@ en el ejercicio 9. El servicio debe correr en primer plano. La red del servicio 
 11. Probar la conexión a la base de datos postgres desde el servicio cloudbeaver.
 12. Crear un archivo Dockerfile.app que permita instalar las dependencias del proyecto Pokeapp y generar la carpeta dist, luego copiar esa carpeta en una imagen de nginx.
 13. Crear una imagen en base al archivo Dockerfile.app creado en el punto anterior con el nombre de su repositorio de Docker Hub y subir su imagen a su repositorio.
+14. En base a la documentacion de [HackMD](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-docker-deployment), crear un manifiesto de 
+docker compose con las siguientes configuraciones:
+
+    - Una base de datos postgres con la imagen postgres:12-alpine.
+    - La base de datos debe tener un usuario __devops2022__, una contraseña __devopscourse2022__ y el nombre de la base de datos __testing__.
+    - La base de datos debe estar en el puerto 9200 del host y el nombre del contenedor debe ser __pg_hackmd__.
+    - En el servicio de hackmd, el nombre del contenedor debe ser __main_hackmd__ y debe estar en el puerto 9300 del host.
+    - Los servicios de hackmd y postgres deben tener los volumenes __hackmd_data__ y __psql_data__ respectivamente.
+    - El servicio de hackmd debe tener, en adición a las variables que proporciona la documentación, las siguientes variables de entorno:
+
+        - CMD_ALLOW_ORIGIN: "localhost,127.0.0.1"
+        - CMD_SESSION_LIFE: 28800000
+        - CMD_ALLOW_PDF_EXPORT: "true"
+        - CMD_EMAIL: "true"
+        - CMD_ALLOW_EMAIL_REGISTER: "false"
