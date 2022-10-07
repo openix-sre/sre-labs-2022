@@ -16,4 +16,8 @@ Los siguientes ejercicios corresponden a prácticas de la unidad Docker del curs
 
 ## Ejercicios de práctica
 
-6. Desplegar un cloudbeaver en el puerto 8978 del host, en la red docker creada en el paso 2 y en background.
+8. Desplegar un cloudbeaver en el puerto 8978 del host, en la red docker creada en el paso 2 y en background.
+9. Crear un volumen docker con el nombre "data_psql"
+10. Desplegar una base de datos postgres con la contraseña "postgres_2022" en el puerto 5400 del host y persistir los datos en el volumen creado
+en el ejercicio 9. El servicio debe correr en primer plano. La red del servicio debe ser la creada en el ejercicio 2.
+11. Probar la conexión a la base de datos postgres desde el servicio cloudbeaver.
