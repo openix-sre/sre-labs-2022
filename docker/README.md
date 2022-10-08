@@ -7,8 +7,8 @@ Los siguientes ejercicios corresponden a prácticas de la unidad Docker del curs
 1. Desplegar un servicio de nginx por el puerto 8080 del host en background y con el nombre __"nginx-service"__.
 2. Crear una red docker con el nombre __"devops_2022"__.
 3. Inspeccionar los metadatos del contenedor desplegado en el ejercicio 1.
-4. Crear un volumen docker con el nombre "data_mysql".
-5. Desplegar una base de datos mysql con la contraseña de root __"devops_2022"__, con el volumen "data_mysql" para persistir los datos de la misma,
+4. Crear un volumen docker con el nombre __"data_mysql"__.
+5. Desplegar una base de datos mysql con la contraseña de root __"devops_2022"__, con el volumen __"data_mysql"__ para persistir los datos de la misma,
 en la red docker creada en el paso 2 y escuchando el puerto 4001 del host en background. El nombre del contenedor debe ser __"db-mysql"__.
 6. Crear un archivo __"Dockerfile.nginx"__, copiar el contenido del la carpeta html en la carpeta html de la imagen de nginx oficial. Hacer el build
 de la imagen basado en dicho archivo y desplegar el servicio con dicha imagen en el puerto 8081 del host en background.
