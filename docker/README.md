@@ -4,25 +4,25 @@ Los siguientes ejercicios corresponden a prácticas de la unidad Docker del curs
 
 ## Ejercicios previos
 
-1. Desplegar un servicio de nginx por el puerto 8080 del host en background.
-2. Crear una red docker con el nombre "devops_2022".
+1. Desplegar un servicio de nginx por el puerto 8080 del host en background y con el nombre __"nginx-service"__.
+2. Crear una red docker con el nombre __"devops_2022"__.
 3. Inspeccionar los metadatos del contenedor desplegado en el ejercicio 1.
 4. Crear un volumen docker con el nombre "data_mysql".
-5. Desplegar una base de datos mysql con la contraseña de root "devops_2022", con el volumen "data_mysql" para persistir los datos de la misma,
-    en la red docker creada en el paso 2 y escuchando el puerto 4001 del host en background.
-6. Crear un archivo "Dockerfile.nginx", copiar el contenido del la carpeta html en la carpeta html de la imagen de nginx oficial. Hacer el build
-    de la imagen basado en dicho archivo y desplegar el servicio con dicha imagen en el puerto 8081 del host en background.
-7. Crear un manifiesto de docker compose "compose_1.yml" con un servicio de metabase y una base de datos mysql. Correr los servicios en primer plano.
+5. Desplegar una base de datos mysql con la contraseña de root __"devops_2022"__, con el volumen "data_mysql" para persistir los datos de la misma,
+en la red docker creada en el paso 2 y escuchando el puerto 4001 del host en background. El nombre del contenedor debe ser __"db-mysql"__.
+6. Crear un archivo __"Dockerfile.nginx"__, copiar el contenido del la carpeta html en la carpeta html de la imagen de nginx oficial. Hacer el build
+de la imagen basado en dicho archivo y desplegar el servicio con dicha imagen en el puerto 8081 del host en background.
+7. Crear un manifiesto de docker compose __"compose_1.yml"__ con un servicio de metabase y una base de datos mysql. Correr los servicios en primer plano.
 
 ## Ejercicios de práctica
 
 8. Desplegar un cloudbeaver en el puerto 8978 del host, en la red docker creada en el paso 2 y en background.
-9. Crear un volumen docker con el nombre "data_psql"
-10. Desplegar una base de datos postgres con la contraseña "postgres_2022" en el puerto 5400 del host y persistir los datos en el volumen creado
+9. Crear un volumen docker con el nombre __"data_psql"__.
+10. Desplegar una base de datos postgres con la contraseña __"postgres_2022"__ en el puerto 5400 del host y persistir los datos en el volumen creado
 en el ejercicio 9. El servicio debe correr en primer plano. La red del servicio debe ser la creada en el ejercicio 2.
 11. Probar la conexión a la base de datos postgres desde el servicio cloudbeaver.
-12. Crear un archivo Dockerfile.app que permita instalar las dependencias del proyecto Pokeapp y generar la carpeta dist, luego copiar esa carpeta en una imagen de nginx.
-13. Crear una imagen en base al archivo Dockerfile.app creado en el punto anterior con el nombre de su repositorio de Docker Hub y subir su imagen a su repositorio.
+12. Crear un archivo __"Dockerfile.app"__ que permita instalar las dependencias del proyecto Pokeapp y generar la carpeta dist, luego copiar esa carpeta en una imagen de nginx.
+13. Crear una imagen en base al archivo __"Dockerfile.app"__ creado en el punto anterior con el nombre de su repositorio de Docker Hub y subir su imagen a su repositorio.
 14. En base a la documentacion de [HackMD](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-docker-deployment), crear un manifiesto de 
 docker compose con las siguientes configuraciones:
 
@@ -37,4 +37,4 @@ docker compose con las siguientes configuraciones:
         - CMD_SESSION_LIFE: 28800000
         - CMD_ALLOW_PDF_EXPORT: "true"
         - CMD_EMAIL: "true"
-        - CMD_ALLOW_EMAIL_REGISTER: "false"
+        - CMD_ALLOW_EMAIL_REGISTER: "true"
