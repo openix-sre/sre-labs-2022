@@ -13,14 +13,16 @@ export class PokeDetailComponent implements OnInit {
   pokemonImg = '';
   pokemonType = [];
 
-  constructor(private activatedRouter: ActivatedRoute,
-    private pokemonService: PokemonService) {
+  constructor(
+    private activatedRouter: ActivatedRoute,
+    private pokemonService: PokemonService
+  ) {
 
     this.activatedRouter.params.subscribe(
       params => {
-        this.getPokemon(params['id']);
+        this.getPokemon(params.id);
       }
-    )
+    );
   }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class PokeDetailComponent implements OnInit {
       err => {
         console.log(err);
       }
-    )
+    );
   }
 
 }
