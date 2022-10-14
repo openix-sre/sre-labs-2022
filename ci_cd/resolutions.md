@@ -96,4 +96,9 @@ build-job:
     - docker login -u <user-account> -p <user-token>
     - docker build -f Dockerfile.dev -t docker.io/<user-account>/pokeapp_2022:$CI_COMMIT_SHA .
     - docker push docker.io/<user-account>/pokeapp_2022:$CI_COMMIT_SHA
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "This is the stage deploy"
 ```
