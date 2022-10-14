@@ -20,7 +20,8 @@ echo "This is the stage <change-name-stage>"
 npm run lint
 ```
 
-8. En el job de __build__ configurar los scripts necesarios para hacer un build de la imagen docker de __app__ y subirlo a DockerHub en el repositorio creado en el paso __6__.
+8. En el job de __build__ configurar los scripts necesarios para hacer un build de la imagen docker de __app__ y subirlo a DockerHub en el repositorio creado en el paso __6__. Utilizar el hahs del commit como tag para la imagen docker.
+9. Al terminar de realizar los ejercicios, eliminar el token de dockerhub.
 
 
 __** Al final de cada punto a partir de este, debe realizarse un commit y hacer un push de los cambios al repositorio.__
