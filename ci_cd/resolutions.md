@@ -46,6 +46,7 @@ stages:
 
 test-job:
   stage: test
+  image: node:14
   script:
     - echo "This is the stage test"
     - cd app
@@ -80,6 +81,7 @@ stages:
 
 test-job:
   stage: test
+  image: node:14
   script:
     - echo "This is the stage test"
     - cd app
@@ -92,7 +94,6 @@ build-job:
   script:
     - echo "This is the stage build"
     - cd app
-    - npm install
     - docker login -u <user-account> -p <user-token>
     - docker build -f Dockerfile.dev -t docker.io/<user-account>/pokeapp_2022:$CI_COMMIT_SHA .
     - docker push docker.io/<user-account>/pokeapp_2022:$CI_COMMIT_SHA
