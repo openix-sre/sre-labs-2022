@@ -11,7 +11,7 @@ echo "This is the stage <change-name-stage>"
 
 
 3. Modificar los jobs para que se disparen solo cuando se realice un cambio en la rama __develop__. ¿Qué sucede con el pipeline?. Luego modificar para que se dispare en la rama __main__.
-4. Copiar el proyecto __PokeApp__ de la práctica de __docker__ y renombrar la carpeta como __app__.
+4. Copiar el proyecto __PokeApp__ de la práctica de __docker__ y renombrar la carpeta como __app__. Ademas, copiar el __Dockerfile.dev__ creado para dicho proyecto.
 5. Crear un token en DockerHub con los permisos de lectura/escritura.
 6. Crear un repositorio en DockerHub con el nombre __pokeapp_2022__.
 7. En el job de __test__ configurar un script para disparar el linter configurado en el proyecto con el commando:
