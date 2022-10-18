@@ -87,3 +87,113 @@ services:
 ```sh
 docker-compose -f compose_1.yaml up
 ```
+
+## Ejercicios de práctica
+
+8. Desplegar un cloudbeaver en el puerto 8978 del host, en la red docker creada en el paso 2 y en background.
+
+```sh
+docker run --name cloudbeaver -d -p 8978:8978 --network devops_2022 dbeaver/cloudbeaver
+```
+
+9. Crear un volumen docker con el nombre __"data_psql"__.
+
+```sh
+docker volume create data_psql
+```
+
+10. Desplegar una base de datos postgres con la contraseña __"postgres_2022"__ en el puerto 5400 del host y persistir los datos en el volumen creado
+en el ejercicio 9. El servicio debe correr en primer plano. La red del servicio debe ser la creada en el ejercicio 2.
+
+```sh
+docker run --name postgres_2022 -e POSTGRES_PASSWORD=postgres_2022 -p 5400:5432 --network devops_2022 -v data_psql:/var/lib/postgresql/data postgres:12
+```
+
+11. Probar la conexión a la base de datos postgres desde el servicio cloudbeaver.
+
+Las credenciales a usar deben ser:
+
+- host: postgres_2022
+- port: 5432
+- database_name: postgres
+- username: postgres
+- password: postgres_2022
+
+12. Crear un archivo __"Dockerfile.app"__ que permita instalar las dependencias del proyecto Pokeapp y generar la carpeta dist, luego copiar esa carpeta en una imagen de nginx.
+
+```Dockerfile
+#stage 1
+FROM node:latest as node
+WORKDIR /app
+COPY . .
+RUN npm install
+# En caso de presentar error en el proceso de build relacionado a ssl/tls, descomentar la siguiente linea:
+# ENV NODE_OPTIONS=--openssl-legacy-provider
+RUN npm run build --prod
+
+#stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/PokeApp /usr/share/nginx/html
+```
+
+```sh
+# Debe estar ubicado en la carpeta docker/Pokeapp
+docker build -t pokeapp -f Dockerfile.app .
+```
+
+13. Crear una imagen en base al archivo __"Dockerfile.app"__ creado en el punto anterior con el nombre de su repositorio de Docker Hub y subir su imagen a su repositorio.
+
+```sh
+# Luego de crear el repositorio de DockerHub, loguearse mediante:
+docker login -u <username> -p <token>
+# Pull de la imagen
+docker tag pokeapp <username>/<repositorio>:<tag>
+docker pull <username>/<repositorio>:<tag>
+```
+
+14. En base a la documentacion de [HackMD](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-docker-deployment), crear un manifiesto de 
+docker compose con las siguientes configuraciones:
+
+    - Una base de datos postgres con la imagen postgres:12-alpine.
+    - La base de datos debe tener un usuario __devops2022__, una contraseña __devopscourse2022__ y el nombre de la base de datos __testing__.
+    - La base de datos debe estar en el puerto 9200 del host y el nombre del contenedor debe ser __pg_hackmd__.
+    - En el servicio de hackmd, el nombre del contenedor debe ser __main_hackmd__ y debe estar en el puerto 9300 del host.
+    - Los servicios de hackmd y postgres deben tener los volumenes __hackmd_data__ y __psql_data__ respectivamente.
+    - El servicio de hackmd debe tener, en adición a las variables que proporciona la documentación, las siguientes variables de entorno:
+
+        - CMD_ALLOW_ORIGIN: "localhost,127.0.0.1"
+        - CMD_SESSION_LIFE: 28800000
+        - CMD_ALLOW_PDF_EXPORT: "true"
+        - CMD_EMAIL: "true"
+        - CMD_ALLOW_EMAIL_REGISTER: "true"
+
+```yaml
+# touch compose_1.yml
+version: '3'
+
+services:
+  metabase-app:
+    image: metabase/metabase
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      MB_DB_TYPE: mysql
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 3306
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase
+      MB_DB_HOST: db-mysql
+    depends_on:
+      - db-mysql
+  db-mysql:
+    image: mysql:5
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: devops2022
+      MYSQL_DATABASE: metabase
+      MYSQL_USER: metabase
+      MYSQL_PASSWORD: metabase
+```
