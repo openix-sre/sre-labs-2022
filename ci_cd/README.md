@@ -65,7 +65,7 @@ __** Al final de cada punto a partir de este, debe realizarse un commit y hacer 
   - Exponer el puerto 80 interno del contenedor
   - Mantener el contenedor en background
 
-15. Dado el siguiente pipeline
+15. Dado el siguiente pipeline, configurar un .gitlab-ci.yml y realizar un commit del mismo.
 
 ```yaml
 stages:
@@ -93,3 +93,5 @@ deploy-job:
     - echo "This is the stage deploy"
     - uname -a
 ```
+
+Una vez subido los cambios, resolver los issues que se presenten y lograr que el pipeline corra exitosamente.
