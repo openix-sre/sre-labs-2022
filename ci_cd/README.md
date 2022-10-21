@@ -58,3 +58,38 @@ __** Al final de cada punto a partir de este, debe realizarse un commit y hacer 
 
 11. Deshacer el último commit realizado para recuperar un estado anterior y realizar el push de los cambios. ¿Cuál es el estado final del pipeline (exitoso o con errores)?
 12. En nuestros jobs de test y build se repiten algunas líneas de código. Buscar en la documentación de gitlab-ci la sintaxis de __default__ y agregar dichas líneas en esta sección como un __before_script__.
+13. En primera instancia, creamos nuestro pipeline con credenciales hardcore, lo cual es una mala práctica. Emplear variables de Gitlab para usar buenas prácticas en el manejo de variables.
+14. Desplegar la imagen de pokeapp en una instancia cuyas credenciales seran proporcionadas por los profesores. El contenedor a desplegar debera tener la siguientes caracteristicas:
+
+  - Nombrar al contenedor con <nombre-del-alumno>-2022
+  - Exponer el puerto 80 interno del contenedor
+  - Mantener el contenedor en background
+
+15. Dado el siguiente pipeline
+
+```yaml
+stages:
+  - test
+  - build
+  - deploy
+
+  test-job:
+  stage: test
+  image: node:14
+  script:
+    - echo "This is the stage test"
+    - node -v
+
+build-job:
+  stage: build-dev
+  script:
+    - echo "This is the stage build"
+    - node -v
+
+deploy-job:
+  stage: deploy
+  image: ubuntu
+  script:
+    - echo "This is the stage deploy"
+    - uname -a
+```
